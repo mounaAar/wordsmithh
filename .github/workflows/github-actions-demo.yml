@@ -22,7 +22,10 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/wordsmith-${{ matrix.service }}:latest ./ ${{ matrix.service }}
+         docker build \
+          -t ${{ secrets.DOCKER_USERNAME }}/wordsmith-${{ matrix.service }}:latest \
+          -f ${{ matrix.service }}/Dockerfile \
+          ${{ matrix.service }}
 
       - name: Tag and push images
         run: |
